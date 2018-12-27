@@ -160,3 +160,14 @@ you may also need to add `mykeystone.com` to `/etc/hosts`.*
 
 * [Keystone, the OpenStack Identity Service](http://docs.openstack.org/developer/keystone/)
 * [Installing Keystone](http://docs.openstack.org/developer/keystone/installing.html)
+
+# alexm notes:
+
+```sh
+$ sudo docker build -t keystone:14.0.1 ./
+$ sudo docker run -d -p 5000:5000 -p 35357:35357 -e KEYSTONE_DB_HOST=192.168.2.6 -e KEYSTONE_DB_ROOT_PASSWD_IF_REMOTED=cisco123 --name keystone01 --hostname keystone.ghettocoders.com keystone:14.0.1
+$ sudo docker exec -it keystone01 bash
+container-id# source /root/openrc
+container-id# openstack user list
+container-id# openstack token issue
+```
